@@ -1,0 +1,13 @@
+import axios from 'axios';
+
+const fetcher = async <T>(url: string, headers = {}): Promise<T | null> => {
+  try {
+    const { data } = await axios.get<T>(url, { withCredentials: true });
+
+    return data;
+  } catch (err) {
+    return null;
+  }
+};
+
+export default fetcher;
