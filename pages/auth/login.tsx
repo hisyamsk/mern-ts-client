@@ -34,7 +34,7 @@ function LoginPage(): JSX.Element {
         values,
         { withCredentials: true }
       );
-      // router.push('/');
+      router.push('/');
     } catch (err: any) {
       setRegisterError(err.message);
     }
