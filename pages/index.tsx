@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import styles from '../styles/Home.module.css';
 import fetcher from '../utils/fetcher';
+import getGoogleOAuthUrl from '../utils/getGoogleURL';
 
 interface IUser {
   _id: string;
@@ -31,6 +32,8 @@ const Home: NextPage<{ fallbackData: IUser }> = ({ fallbackData }) => {
         <div>
           <div>Please Login</div>
           <button onClick={() => router.push('/auth/login')}>Login</button>
+          <div>or</div>
+          <a href={getGoogleOAuthUrl()}>Login with Google</a>
         </div>
       )}
     </div>
