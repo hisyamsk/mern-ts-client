@@ -1,4 +1,4 @@
-export default function getGoogleOAuthUrl() {
+export default function getGoogleOAuthUrl(): string {
   const rootUrl = 'http://accounts.google.com/o/oauth2/v2/auth';
 
   const options = {

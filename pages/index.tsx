@@ -1,7 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import styles from '../styles/Home.module.css';
 import fetcher from '../utils/fetcher';
 import getGoogleOAuthUrl from '../utils/getGoogleURL';
 
@@ -18,24 +16,23 @@ interface IUser {
 }
 
 const Home: NextPage<{ fallbackData: IUser }> = ({ fallbackData }) => {
-  const router = useRouter();
-  const { data, isValidating } = useSWR<IUser | null>(
+  const { data } = useSWR<IUser | null>(
     `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/me`,
     fetcher,
     { fallbackData }
   );
+
+  if (data) {
+    return <div>Welcome! {data.name}</div>;
+  }
+
   return (
-    <div className={styles.container}>
-      {data && !isValidating ? (
-        <div>Welcome {data.name}!</div>
-      ) : (
-        <div>
-          <div>Please Login</div>
-          <button onClick={() => router.push('/auth/login')}>Login</button>
-          <div>or</div>
-          <a href={getGoogleOAuthUrl()}>Login with Google</a>
-        </div>
-      )}
+    <div>
+      <div>Please login</div>
+      <br />
+      <a href="/auth/login">Login</a>
+      <br />
+      <a href={getGoogleOAuthUrl()}>Login with Google</a>
     </div>
   );
 };
