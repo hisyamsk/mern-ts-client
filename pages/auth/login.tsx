@@ -36,7 +36,7 @@ function LoginPage(): JSX.Element {
       );
       router.push('/');
     } catch (err: any) {
-      setRegisterError(err.message);
+      setRegisterError(err.response.data ? err.response.data.msg : err.message);
     }
   }
 
