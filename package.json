@@ -26,6 +26,7 @@
     "zod": "^3.19.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/cookie-parser": "^1.4.3"
   }
 }
